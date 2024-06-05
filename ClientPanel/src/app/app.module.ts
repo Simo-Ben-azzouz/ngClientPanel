@@ -3,7 +3,6 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { ComponentsComponent } from './components/components.component';
 import { AddClientComponent } from './components/add-client/add-client.component';
 import { ClientComponent } from './components/client/client.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
@@ -13,14 +12,14 @@ import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { NotFoundComponent } from './components/not-found/not-found.component';
-import { SettingComponent } from './components/setting/setting.component';
 import { SettingsComponent } from './components/settings/settings.component';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
+import { AuthClientService } from './services/auth-client.service';
+import { ClientService } from './services/client.service';
 
 @NgModule({
   declarations: [
     AppComponent,
-    ComponentsComponent,
     AddClientComponent,
     ClientComponent,
     DashboardComponent,
@@ -30,7 +29,6 @@ import { SidebarComponent } from './components/sidebar/sidebar.component';
     RegisterComponent,
     NavbarComponent,
     NotFoundComponent,
-    SettingComponent,
     SettingsComponent,
     SidebarComponent
   ],
@@ -38,7 +36,7 @@ import { SidebarComponent } from './components/sidebar/sidebar.component';
     BrowserModule,
     AppRoutingModule
   ],
-  providers: [],
+  providers: [AuthClientService,ClientService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
