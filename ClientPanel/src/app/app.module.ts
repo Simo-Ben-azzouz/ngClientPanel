@@ -16,6 +16,9 @@ import { SettingsComponent } from './components/settings/settings.component';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { AuthClientService } from './services/auth-client.service';
 import { ClientService } from './services/client.service';
+import { AngularFireModule } from '@angular/fire/compat';
+import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
+import { AngularFireAuthModule } from '@angular/fire/compat/auth';
 
 @NgModule({
   declarations: [
@@ -34,7 +37,10 @@ import { ClientService } from './services/client.service';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    // AngularFireModule.initializeApp(environment.firbase)
+    AngularFirestoreModule,
+    AngularFireAuthModule
   ],
   providers: [AuthClientService,ClientService],
   bootstrap: [AppComponent]
