@@ -1,1 +1,12 @@
-<p>client works!</p>
+<!-- src/app/client/client.component.html -->
+<div *ngIf="clients && clients.length > 0; else noClients">
+    <ul>
+      <li *ngFor="let client of clients">
+        {{ client.firstName }} - {{ client.lastName }} - {{ client.email }} - {{ client.telephone }}- {{ client.balance }}
+      </li>
+    </ul>
+  </div>
+  <ng-template #noClients>
+    <p>No clients found.</p>
+  </ng-template>
+  
