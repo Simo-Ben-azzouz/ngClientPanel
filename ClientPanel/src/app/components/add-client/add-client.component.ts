@@ -1,4 +1,7 @@
 import { Component } from '@angular/core';
+import { Client } from '../../models/client';
+import { ClientService } from '../../services/client.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-add-client',
@@ -6,5 +9,22 @@ import { Component } from '@angular/core';
   styleUrl: './add-client.component.css'
 })
 export class AddClientComponent {
-
+  client : Client ={
+    firstName : "",
+    lastName : "",
+    email : "",
+    telephone: null,
+    balance : 0
+  }
+/**
+ *
+ */
+constructor(private clientService : ClientService , private route : Router) {
+  
+  
+}
+  onSubmit(){
+    this.clientService.newClient(this.client);
+    return this.route.navigate(['/']);
+  }
 }

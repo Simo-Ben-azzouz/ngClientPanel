@@ -24,4 +24,8 @@ export class ClientService {
       }))
     );
   }
+
+  newClient (client : Client){
+    this.CLientsCollection.add(client);
+  }
 }
