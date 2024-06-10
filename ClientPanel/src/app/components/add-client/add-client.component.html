@@ -63,11 +63,12 @@
               class="form-control"
               minlength="8"
               [(ngModel)]="client.telephone"
+              required
               #telephone="ngModel"
             />
             <div *ngIf="telephone.touched && telephone.invalid" class="text-danger">
               <small *ngIf="telephone.errors?.['required']">Telephone is required.</small>
-              <small *ngIf="lastname.errors?.['minlength']">phone must be at least 8 characters long.</small>
+              <small *ngIf="telephone.errors?.['minlength']">phone must be at least 8 characters long.</small>
             </div>
           </div>
           <div class="form-group">
