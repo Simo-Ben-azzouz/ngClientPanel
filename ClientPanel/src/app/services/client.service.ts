@@ -28,4 +28,8 @@ export class ClientService {
   newClient (client : Client){
     this.CLientsCollection.add(client);
   }
+
+  getClient (id : string) : Observable<Client | undefined>{
+    return this.CLientsCollection.doc(id).valueChanges();
+  }
 }
