@@ -12,6 +12,7 @@ import { Client } from '../../models/client';
 export class DetailsClientComponent {
   id?: string;
   client?: Client;
+  showBalance : boolean = false;
 /**
  *
  */
@@ -33,5 +34,13 @@ ngOnInit() {
   
   });
   
+  }
+
+  // methode 
+
+  onSubmit(){
+    this.client!.id = this.id;
+    this.clientService.updateClient(this.client!);
+    this.toastr.success('updated');
   }
 }

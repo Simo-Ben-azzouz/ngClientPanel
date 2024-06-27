@@ -1,6 +1,6 @@
+import { Client } from './../models/client';
 import { Injectable } from '@angular/core';
 import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument } from '@angular/fire/compat/firestore';
-import { Client } from '../models/client';
 import { Observable, map } from 'rxjs';
 
 @Injectable({
@@ -31,5 +31,11 @@ export class ClientService {
 
   getClient (id : string) : Observable<Client | undefined>{
     return this.CLientsCollection.doc(id).valueChanges();
+  }
+
+  updateClient (client : Client)
+  {
+    this.CLientsDoc = this.CLientsCollection.doc(client.id);
+    this.CLientsDoc.update(client);
   }
 }
