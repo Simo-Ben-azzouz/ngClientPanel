@@ -1,8 +1,14 @@
 <div class="container mt-5">
     <div class="card">
+      <div class="col-md-6">
+        <a routerLink="/"
+          ><i class="fa fa-arrow-circle-left" aria-hidden="true"></i> Go to
+          Dashboard</a
+        >
+      </div>
       <div class="card-body">
         <form #formClient="ngForm" (ngSubmit)="onSubmit()">
-        <h4 class="card-title">Client Form</h4>
+        <h4 class="card-title">New Client</h4>
           <div class="form-group">
             <label for="firstname">Firstname</label>
             <input

@@ -1,1 +1,100 @@
-<p>edit-client works!</p>
+<div class="container mt-5">
+    <div class="card">
+      <div class="col-md-6">
+        <a routerLink="/"
+          ><i class="fa fa-arrow-circle-left" aria-hidden="true"></i> Go to
+          Dashboard</a
+        >
+      </div>
+      <div class="card-body">
+        <form #formClient="ngForm" (ngSubmit)="onUpdate()">
+        <h4 class="card-title">New Client</h4>
+          <div class="form-group">
+            <label for="firstname">Firstname</label>
+            <input
+              type="text"
+              id="firstname"
+              name="firstname"
+              class="form-control"
+              [(ngModel)]="client.firstName"
+              required
+              minlength="3"
+              #firstname="ngModel"
+            />
+            <div *ngIf="firstname.touched && firstname.invalid" class="text-danger">
+              <small *ngIf="firstname.errors?.['required']">Firstname is required.</small>
+              <small *ngIf="firstname.errors?.['minlength']">Firstname must be at least 3 characters long.</small>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="lastname">Lastname</label>
+            <input
+              type="text"
+              id="lastname"
+              name="lastname"
+              class="form-control"
+              [(ngModel)]="client.lastName"
+              required
+              minlength="3"
+              #lastname="ngModel"
+            />
+            <div *ngIf="lastname.touched && lastname.invalid" class="text-danger">
+              <small *ngIf="lastname.errors?.['required']">Lastname is required.</small>
+              <small *ngIf="lastname.errors?.['minlength']">Lastname must be at least 3 characters long.</small>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input
+              type="email"
+              id="email"
+              name="email"
+              class="form-control"
+              [(ngModel)]="client.email"
+              required
+              email
+              #email="ngModel"
+            />
+            <div *ngIf="email.touched && email.invalid" class="text-danger">
+              <small *ngIf="email.errors?.['required']">Email is required.</small>
+              <small *ngIf="email.errors?.['email']">Invalid email address.</small>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="telephone">Telephone</label>
+            <input
+              type="text"
+              id="telephone"
+              name="telephone"
+              class="form-control"
+              minlength="8"
+              [(ngModel)]="client.telephone"
+              required
+              #telephone="ngModel"
+            />
+            <div *ngIf="telephone.touched && telephone.invalid" class="text-danger">
+              <small *ngIf="telephone.errors?.['required']">Telephone is required.</small>
+              <small *ngIf="telephone.errors?.['minlength']">phone must be at least 8 characters long.</small>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="balance">Balance</label>
+            <input
+              type="number"
+              id="balance"
+              name="balance"
+              class="form-control"
+              [(ngModel)]="client.balance"
+              required
+              #balance="ngModel"
+            />
+            <div *ngIf="balance.touched && balance.invalid" class="text-danger">
+              <small *ngIf="balance.errors?.['required']">Balance is required.</small>
+            </div>
+          </div>
+          <button type="submit" class="btn btn-danger btn-block" [disabled]="!formClient.valid">Update</button>
+        </form>
+      </div>
+    </div>
+  </div>
+  
