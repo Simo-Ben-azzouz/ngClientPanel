@@ -14,7 +14,7 @@ export class ClientService {
     this.CLientsCollection = this.afs.collection('clients');
   }
 
-  // method get
+  // method 
   getClients(): Observable<Client[]> {
     return this.CLientsCollection.snapshotChanges().pipe(
       map(actions => actions.map(a => {
@@ -37,5 +37,10 @@ export class ClientService {
   {
     this.CLientsDoc = this.CLientsCollection.doc(client.id);
     this.CLientsDoc.update(client);
+  }
+
+  deleteClient(id : string){
+    this.CLientsDoc = this.CLientsCollection.doc(id);
+    this.CLientsDoc.delete();
   }
 }

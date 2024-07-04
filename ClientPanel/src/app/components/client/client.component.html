@@ -22,7 +22,7 @@
             </tr>
           </thead>
           <tbody>
-            <tr *ngFor="let client of clients">
+            <tr *ngFor="let client of clients" (dblclick)="deleteClient(client.id!)">
               <td>{{client.firstName}} {{client.lastName}}</td>
               <td>{{client.telephone}}</td>
               <td>{{client.balance | currency : 'USD': 'symbol'}}</td>

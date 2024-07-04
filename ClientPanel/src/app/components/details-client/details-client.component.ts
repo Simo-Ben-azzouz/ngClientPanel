@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { ClientService } from '../../services/client.service';
-import { ActivatedRoute, Params } from '@angular/router';
+import { ActivatedRoute, Params, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { Client } from '../../models/client';
 
@@ -19,6 +19,7 @@ export class DetailsClientComponent {
 constructor(
 private  clientService : ClientService,
 private  route : ActivatedRoute,
+private router : Router,
 private  toastr : ToastrService
 ) {}
 
@@ -42,5 +43,13 @@ ngOnInit() {
     this.client!.id = this.id;
     this.clientService.updateClient(this.client!);
     this.toastr.success('updated');
+  }
+
+  deleteClient(id : string){
+    if (confirm('are you sure you want to delete this client ?')) {
+      this.clientService.deleteClient(id);
+      this.toastr.error('deleted');
+      this.router.navigate(['/']);
+    }
   }
 }
