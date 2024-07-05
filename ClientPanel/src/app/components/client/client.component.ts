@@ -3,6 +3,7 @@ import { Component } from '@angular/core';
 import { ClientService } from '../../services/client.service';
 import { Router } from '@angular/router';
 import { Toast, ToastrService } from 'ngx-toastr';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-client',
@@ -32,10 +33,29 @@ export class ClientComponent {
   }
 
   deleteClient(id : string){
-    if (confirm('are you sure you want to delete this client ?')) {
-      this.clientService.deleteClient(id);
-      this.toastr.error('deleted');
-      this.router.navigate(['/']);
+    
+    Swal.fire({
+      title: 'Are you sure?',
+      text: 'You won\'t be able to revert this!',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonText: 'Yes, delete it!',
+      cancelButtonText: 'No, cancel!',
+    }).then((result) => {
+      if (result.isConfirmed) {
+        // Delete the client
+        this.clientService.deleteClient(id);
+        this.toastr.error('deleted');
+        this.router.navigate(['/']);
+        Swal.fire(
+          'Deleted!',
+          'The client has been deleted.',
+          'success'
+        );
+      }
     }
+  )
+    
+    
   }
 }

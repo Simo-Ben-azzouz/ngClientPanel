@@ -3,6 +3,7 @@ import { ClientService } from '../../services/client.service';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { Client } from '../../models/client';
+import Swal from 'sweetalert2'
 
 @Component({
   selector: 'app-details-client',
