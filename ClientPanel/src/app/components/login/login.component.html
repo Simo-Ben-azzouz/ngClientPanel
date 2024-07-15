@@ -9,7 +9,7 @@
                         </span> Client
                     </h1>
                     <!-- form -->
-                    <form >
+                    <form (ngSubmit)="onLogin()">
                         <div class="form-group">
                             <label for="email">Email</label>
                             <input type="email" class="form-control" id="email" name="email" [(ngModel)]="email" required>
