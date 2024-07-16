@@ -42,4 +42,18 @@ export class LoginComponent {
       this.toastr.show(error);
     })
   }
+
+  onLoginWithGoogle(){
+    this.authService.loginWithGoogle()
+    .then((auth) =>{
+      if (auth) {
+        this.toastr.success('You are logged succesfuly');
+        this.route.navigate(['/']);
+      }
+    })
+    .catch((error) =>{
+      this.toastr.show(error);
+    })
+  }
+
 }
