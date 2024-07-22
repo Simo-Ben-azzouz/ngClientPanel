@@ -31,7 +31,7 @@ export class LoginComponent {
   }
   // methode 
   onLogin(){
-    this.authService.Login(this.email , this.password)
+    this.authService.login(this.email , this.password)
     .then((auth) =>{
       if (auth) {
         this.toastr.success('You are logged succesfuly');
