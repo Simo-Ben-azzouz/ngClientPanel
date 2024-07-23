@@ -4,6 +4,7 @@ import { ClientService } from '../../services/client.service';
 import { Router } from '@angular/router';
 import { Toast, ToastrService } from 'ngx-toastr';
 import Swal from 'sweetalert2';
+import { AuthClientService } from '../../services/auth-client.service';
 
 @Component({
   selector: 'app-client',
@@ -15,16 +16,37 @@ export class ClientComponent {
   total?: number;
   constructor(
     private clientService: ClientService,
+    private authService : AuthClientService,
     private router : Router,
     private toastr : ToastrService
   ) {}
 
-  ngOnInit(): void {
-    this.clientService.getClients().subscribe((clients) => {
-      this.clients = clients;
-      this.total = this.getTotal();
-    });
+  ngOnInit() {
+    this.authService.getAuth().subscribe(
+      (auth) => {
+        console.log('Authentication object:', auth);
+  
+        if (auth && typeof auth.uid === 'string') {
+          this.clientService.getClients(auth.uid).subscribe(
+            (clients) => {
+              console.log('Clients fetched:', clients);
+              this.clients = clients;
+              this.total = this.getTotal();
+            },
+            (error) => {
+              console.error('Error fetching clients:', error);
+            }
+          );
+        } else {
+          console.error('Authentication failed or UID is not valid');
+        }
+      },
+      (error) => {
+        console.error('Error fetching authentication:', error);
+      }
+    );
   }
+  
 //  method
   getTotal() {
    return this.clients.reduce((total, client) => {

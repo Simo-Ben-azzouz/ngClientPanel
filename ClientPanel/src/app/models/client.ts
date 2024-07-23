@@ -5,4 +5,5 @@ export interface Client {
     email?:string;
     telephone? :number | null;
     balance? : number;
+    userId? : string
 }
