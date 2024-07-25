@@ -13,6 +13,7 @@ import { AuthClientService } from '../../services/auth-client.service';
 })
 export class ClientComponent {
   clients!: Client[];
+  searchClient! : Client[];
   total?: number;
   constructor(
     private clientService: ClientService,
@@ -30,7 +31,7 @@ export class ClientComponent {
           this.clientService.getClients(auth.uid).subscribe(
             (clients) => {
               console.log('Clients fetched:', clients);
-              this.clients = clients;
+              this.searchClient = this.clients = clients;
               this.total = this.getTotal();
             },
             (error) => {
@@ -45,6 +46,7 @@ export class ClientComponent {
         console.error('Error fetching authentication:', error);
       }
     );
+    
   }
   
 //  method
@@ -52,6 +54,10 @@ export class ClientComponent {
    return this.clients.reduce((total, client) => {
      return total + parseFloat(client.balance!.toString());
     },0)
+  }
+
+  search(query :string){
+    this.searchClient = (query) ? this.clients.filter((client) => client.firstName?.includes(query)) : this.clients ;
   }
 
   deleteClient(id : string){
